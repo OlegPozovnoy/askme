@@ -16,7 +16,7 @@ class User < ApplicationRecord
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP, message: "Wrong email format"}
   validates :username, uniqueness: {case_sensitive: false}
   validates :username, length: {maximum: 40}
-  validates :username, format: {with: /[a-zA-Z0-9_]+/, message: "Only letters digits and '_' are allowed"}
+  validates :username, format: {with: /\A[a-zA-Z0-9_]+\z/, message: "Only letters digits and '_' are allowed"}
   # Виртуальное поле, которое не сохраняется в базу. Из него перед сохранением читается пароль,
   # и сохраняется в базу уже зашифрованная версия пароля в
   attr_accessor :password
